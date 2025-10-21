@@ -3,7 +3,7 @@ import type { Express, Response } from 'express';
 import cors from 'cors';
 import { env } from './env';
 
-import { router as profesorRouter } from './routes/profesor';
+import { router as profesorRouter } from './controller/routes/profesor';
 
 
 export const app: Express = express();

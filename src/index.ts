@@ -2,7 +2,7 @@ import { app } from './serve';
 import {env} from './env'
 //routes register
 
- import { router as profesores } from './routes/profesor';
+ import { router as profesores } from './controller/routes/profesor';
 
 
 
