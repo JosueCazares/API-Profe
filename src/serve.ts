@@ -1,9 +1,9 @@
 import express from 'express';
 import type { Express, Response } from 'express';
 import cors from 'cors';
-import { env } from './env';
+import { env } from './config/env';
 
-import { router as profesorRouter } from './controller/routes/profesor';
+import { router as profesorRouter } from './routes/profesor';
 
 
 export const app: Express = express();

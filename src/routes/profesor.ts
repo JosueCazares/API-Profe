@@ -1,29 +1,19 @@
 // Rutas para manejar operaciones CRUD en la entidad Alumno
 import { Router } from 'express';  // Importamos Router para definir nuestras rutas.
 import type { Request, Response } from 'express';  // Tipos de Express para Request y Response.
-import { prisma } from '../../db';  // Prisma es el cliente de la base de datos.
-import type { APIResponse } from '../../lib/types';  // Importamos el tipo de respuesta APIResponse.
+import { prisma } from '../config/db';  // Prisma es el cliente de la base de datos.
+import type { APIResponse } from '../lib/types';  // Importamos el tipo de respuesta APIResponse.
 import type { Profesor } from '@prisma/client';  // Importamos el tipo Alumno de Prisma.
-import {handleZodError} from '../../lib/handleZodError';  // Importamos Zod para validación de esquemas.
-import { ZodProfesorObj,ZodProfesorIdObj,ZodProfesorIdPassObj } from '../../validation/ZodProfesor';  // Esquema Zod para validar datos de Profesor.
-
+import {handleZodError} from '../lib/handleZodError';  // Importamos Zod para validación de esquemas.
+import { ZodProfesorObj,ZodProfesorIdObj,ZodProfesorIdPassObj } from '../validation/ZodProfesor';  // Esquema Zod para validar datos de Profesor.
+import { getProfesores} from "../controller/profesor.controller"
 export const router = Router();  // Creamos un router para las rutas de alumno.
 
 // Ruta GET: Obtiene la lista de profesores
-router.get('/', async (_: Request, res: Response) => {
-    let profesor = await prisma.profesor.findMany();  // Consulta a la base de datos para obtener todos los profesores.
-
-    // Respuesta exitosa con la lista de profesores
-    let responseOk: APIResponse<Profesor[]> = {
-        status: 'success',
-        data: profesor
-    };
-
-    return res.status(200).json(responseOk);  // Enviamos la respuesta con el código HTTP 200.
-});
+router.get('/', getProfesores);
 
 // Ruta POST: Crea un nuevo profesor
-router.post('/', async (req: Request, res: Response) => {
+/* router.post('/', async (req: Request, res: Response) => {
     try {
         // Validar los datos del request usando Zod
         const camposValidados = ZodProfesorObj.parse(req.body);  // Validamos el body con Zod.
@@ -87,7 +77,7 @@ router.put('/', async (req: Request, res: Response) => {
         return handleZodError(res, error);  // Manejamos errores de validación Zod o cualquier otro error.
     }
 });
-
+ */
 router.put('/pass', async (req: Request, res: Response) => {
     try {
         // Validamos los datos del request con Zod

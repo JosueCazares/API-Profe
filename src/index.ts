@@ -1,8 +1,8 @@
 import { app } from './serve';
-import {env} from './env'
+import {env} from './config/env'
 //routes register
 
- import { router as profesores } from './controller/routes/profesor';
+ import { router as profesores } from './routes/profesor';
 
 
 
