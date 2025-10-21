@@ -17,6 +17,7 @@ model Profesor {
   numEMpleado Int    @id @default(autoincrement())
   nombre      String
   puesto      PUESTO
+  password    String
 }
 
 enum PUESTO {
