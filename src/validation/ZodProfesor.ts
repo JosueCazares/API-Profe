@@ -8,9 +8,11 @@ export const ZodProfesorObj = z.object({
     
 });
 
-export const ZodProfesorIdObj = z.object({    
+export const ZodProfesorUpdate = z.object({    
     numeroEmpleado: z.number().min(1),
-    nombre: z.string().min(2).max(100),  
+    nombre: z.string().min(2).max(100),
+   puesto: z.nativeEnum(PUESTO),
+    password: z.string()
 });
 
 export const ZodProfesorIdPassObj = z.object({    
